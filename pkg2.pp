@@ -1,0 +1,22 @@
+class package_installation {
+
+
+   case $::osfamily {
+        'RedHat': {
+           $pkgname = [ 'screen', 'strace', 'sudo' ]
+         
+         }
+         'Debian': {
+             $pkgname = [ 'screen', 'strace', 'sudo' ]
+         }
+         default: {
+           $pkgname = [ 'screen' ]
+         }
+        
+      }
+
+    package { $pkgname:
+      ensure => absent,
+        }
+  }
+  include package_installation
